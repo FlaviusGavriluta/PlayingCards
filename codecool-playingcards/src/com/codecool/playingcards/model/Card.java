@@ -2,25 +2,30 @@ package com.codecool.playingcards.model;
 
 public class Card {
 
-    private String symbol;
-    private Suit suit;
+    private final String symbol;
+    private final Suit suit;
+    private final String title;
 
-    public Card() {
+
+    public Card(String symbol, Suit suit) {
+        this.symbol = symbol;
+        this.suit = suit;
+        title = createTitle();
+    }
+
+    public String createTitle(){
+        return this.symbol + " of " + this.suit;
+    }
+
+    public String getTitle(){
+        return title;
     }
 
     public String getSymbol() {
         return symbol;
     }
 
-    public void setSymbol(String symbol) {
-        this.symbol = symbol;
-    }
-
     public Suit getSuit() {
         return suit;
-    }
-
-    public void setSuit(Suit suit) {
-        this.suit = suit;
     }
 }
