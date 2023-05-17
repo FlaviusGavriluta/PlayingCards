@@ -2,14 +2,14 @@ package com.codecool.playingcards.model;
 
 import java.util.Objects;
 
-public class Card {
+public class FrenchCard {
 
     private final String symbol;
     private final FrenchSuit suit;
     private final String title;
 
 
-    public Card(String symbol, FrenchSuit suit) {
+    public FrenchCard(String symbol, FrenchSuit suit) {
         this.symbol = symbol;
         this.suit = suit;
         title = this.symbol + " of " + this.suit;
@@ -31,7 +31,7 @@ public class Card {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Card card = (Card) o;
+        FrenchCard card = (FrenchCard) o;
         return Objects.equals(symbol, card.symbol) && suit == card.suit && Objects.equals(title, card.title);
     }
 

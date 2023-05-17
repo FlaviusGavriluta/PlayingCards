@@ -9,18 +9,18 @@ import static java.lang.System.out;
 
 public class App {
     public static void main(String[] args) {
-        Card card1 = new Card("Ace", FrenchSuit.SPADES);
-        Card card2 = new Card("Ace", FrenchSuit.SPADES);
+        FrenchCard card1 = new FrenchCard("Ace", FrenchSuit.SPADES);
+        FrenchCard card2 = new FrenchCard("Ace", FrenchSuit.SPADES);
 
-        List<Card> deck = generateFrenchDeck();
+        List<FrenchCard> deck = generateFrenchDeck();
 
         for (int i = 0; i < deck.size(); i++) {
             out.println(i + 1 + " - " + deck.get(i));
         }
     }
 
-    private static List<Card> generateFrenchDeck() {
-        List<Card> deck = new ArrayList<>();
+    private static List<FrenchCard> generateFrenchDeck() {
+        List<FrenchCard> deck = new ArrayList<>();
 
         for (FrenchSuit suit : FrenchSuit.values()) {
             addNumberedCards(deck, suit);
@@ -29,18 +29,18 @@ public class App {
         return deck;
     }
 
-    private static void addNumberedCards(List<Card> deck, FrenchSuit suit) {
+    private static void addNumberedCards(List<FrenchCard> deck, FrenchSuit suit) {
         for (int i = 2; i <= 10; i++) {
-            Card card = new Card(String.valueOf(i), suit);
+            FrenchCard card = new FrenchCard(String.valueOf(i), suit);
             deck.add(card);
         }
     }
 
-    private static void addCourtCards(List<Card> deck, FrenchSuit suit) {
+    private static void addCourtCards(List<FrenchCard> deck, FrenchSuit suit) {
         String[] courtSymbols = {"Jack", "Queen", "King", "Ace"};
 
         for (String courtSymbol : courtSymbols) {
-            Card card = new Card(courtSymbol, suit);
+            FrenchCard card = new FrenchCard(courtSymbol, suit);
             deck.add(card);
         }
     }
