@@ -5,43 +5,56 @@ import com.codecool.playingcards.model.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.lang.System.out;
-
 public class App {
     public static void main(String[] args) {
-        FrenchCard card1 = new FrenchCard("Ace", FrenchSuit.SPADES);
-        FrenchCard card2 = new FrenchCard("Ace", FrenchSuit.SPADES);
+        Deck frenchDeck = (Deck) generateFrenchDeck();
+        System.out.println("French deck created. Card count: " + frenchDeck.getCardCount()); // 52
 
-        List<FrenchCard> deck = generateFrenchDeck();
+        Card card = frenchDeck.drawOne();
+        System.out.println(card + "  was drawn. Card count: " + frenchDeck.getCardCount()); //51
 
-        for (int i = 0; i < deck.size(); i++) {
-            out.println(i + 1 + " - " + deck.get(i));
+        frenchDeck.reset();
+        System.out.println("Deck has been reset. Card count: " + frenchDeck.getCardCount()); //52
+    }
+
+    private static Deck generateFrenchDeck() {
+        int[] numbers = {2, 3, 4, 5, 6, 7, 8, 9, 10};
+        String[] symbols = {"Jack", "Queen", "King", "Ace"};
+        String[] suits = {"Clubs", "Spades", "Hearts", "Diamonds"};
+
+        return generateDeck(numbers, symbols, suits);
+    }
+
+    private static Deck generateGermanDeck() {
+        int[] numbers = {7, 8, 9, 10};
+        String[] symbols = {"Unter", "Ober", "King", "Ace"};
+        String[] suits = {"Acorns", "Leaves", "Hearts", "Bells"};
+
+        return generateDeck(numbers, symbols, suits);
+    }
+
+    private static Deck generateDeck(int[] numbers, String[] symbols, String[] suits) {
+        ArrayList<Card> cards = new ArrayList<Card>();
+
+        for (String suit : suits) {
+            addNumberedCards(cards, numbers, suit);
+            addCourCards(cards, symbols, suit);
+        }
+
+        return new Deck(cards);
+    }
+
+    private static void addNumberedCards(ArrayList<Card> cards, int[] numbers, String suit) {
+        for (int number : numbers) {
+            Card card = new Card(Integer.toString(number), suit);
+            cards.add(card);
         }
     }
 
-    private static List<FrenchCard> generateFrenchDeck() {
-        List<FrenchCard> deck = new ArrayList<>();
-
-        for (FrenchSuit suit : FrenchSuit.values()) {
-            addNumberedCards(deck, suit);
-            addCourtCards(deck, suit);
-        }
-        return deck;
-    }
-
-    private static void addNumberedCards(List<FrenchCard> deck, FrenchSuit suit) {
-        for (int i = 2; i <= 10; i++) {
-            FrenchCard card = new FrenchCard(String.valueOf(i), suit);
-            deck.add(card);
-        }
-    }
-
-    private static void addCourtCards(List<FrenchCard> deck, FrenchSuit suit) {
-        String[] courtSymbols = {"Jack", "Queen", "King", "Ace"};
-
-        for (String courtSymbol : courtSymbols) {
-            FrenchCard card = new FrenchCard(courtSymbol, suit);
-            deck.add(card);
+    private static void addCourCards(ArrayList<Card> cards, String[] symbols, String suit) {
+        for (String symbol : symbols) {
+            Card card = new Card(symbol, suit);
+            cards.add(card);
         }
     }
 }

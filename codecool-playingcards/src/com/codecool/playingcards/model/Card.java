@@ -2,24 +2,23 @@ package com.codecool.playingcards.model;
 
 import java.util.Objects;
 
-public class FrenchCard {
+public class Card {
 
     private final String symbol;
-    private final FrenchSuit suit;
+    private final String suit;
     private final String title;
 
-
-    public FrenchCard(String symbol, FrenchSuit suit) {
+    public Card(String symbol, String suit) {
         this.symbol = symbol;
         this.suit = suit;
-        title = this.symbol + " of " + this.suit;
+        this.title = this.symbol + " of " + this.suit;
     }
 
     public String getSymbol() {
         return symbol;
     }
 
-    public FrenchSuit getSuit() {
+    public String getSuit() {
         return suit;
     }
 
@@ -31,7 +30,7 @@ public class FrenchCard {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        FrenchCard card = (FrenchCard) o;
+        Card card = (Card) o;
         return Objects.equals(symbol, card.symbol) && suit == card.suit && Objects.equals(title, card.title);
     }
 
