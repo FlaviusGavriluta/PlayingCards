@@ -5,11 +5,11 @@ import java.util.Objects;
 public class Card {
 
     private final String symbol;
-    private final Suit suit;
+    private final FrenchSuit suit;
     private final String title;
 
 
-    public Card(String symbol, Suit suit) {
+    public Card(String symbol, FrenchSuit suit) {
         this.symbol = symbol;
         this.suit = suit;
         title = this.symbol + " of " + this.suit;
@@ -19,7 +19,7 @@ public class Card {
         return symbol;
     }
 
-    public Suit getSuit() {
+    public FrenchSuit getSuit() {
         return suit;
     }
 
